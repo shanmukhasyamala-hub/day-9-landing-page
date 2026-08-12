@@ -1,0 +1,187 @@
+:root {
+  --paper: #F6F5F0;
+  --paper-dim: #EFEDE6;
+  --ink: #14181F;
+  --ink-soft: #4A5160;
+  --navy: #1B2A4A;
+  --amber: #FF7A33;
+  --amber-dim: #FFE3D1;
+  --teal: #2F7A72;
+  --teal-dim: #DCEBE8;
+  --line: #D8D5CC;
+  --line-strong: #B9B6AC;
+  --white: #FFFFFF;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  --container: 1180px;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--amber-dim);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  flex: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 13px 22px;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-primary:hover { background: var(--navy); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+.section {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.section-head {
+  max-width: 620px;
+  margin-bottom: 56px;
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  margin-top: 14px;
+}
+
+.section-head p {
+  margin-top: 16px;
+  font-size: 17px;
+}
+
+/* corner ticks for schematic-style cards */
+.tick-frame {
+  position: relative;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+}
+.tick-frame::before, .tick-frame::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--ink);
+  pointer-events: none;
+}
+.tick-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.tick-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 0 20px; }
+  .section { padding: 64px 0; }
+}
